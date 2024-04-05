@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@SuppressWarnings("unused")
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -21,6 +22,7 @@ public class AuthenticationService {
         private final PasswordEncoder passwordEncoder;
         private final JwtService jwtService;
         private final AuthenticationManager authenticationManager;
+        @SuppressWarnings("static-access")
         public AuthenticationResponse register(RegisterRequest request) {
             var user = User.builder()
                     .email(request.getEmail())
@@ -36,6 +38,7 @@ public class AuthenticationService {
                     .build();
         }
 
+        @SuppressWarnings("static-access")
         public AuthenticationResponse authenticate(AuthenticationRequest request) {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
